@@ -1,10 +1,17 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# n = gets.to_s.to_i  # 整数1つを受け取る(1行に1つ整数がある前提)#
-# s = gets.to_s.chomp # 1行を文字列として受け取る(chompで最後の改行を切り落としている)
-# a = gets.to_s.split.map{ |e| e.to_i } # 横1行のスペース区切りの整数を配列として受け取る
-# a = Array.new(n){ gets.to_s.to_i } # n行1列の改行区切りの整数を配列として受け取る
-# m = Array.new(n){ gets.to_s.split.map{ |e| e.to_i } } # n行m列の整数を2次元配列で受け取る
-a, b = gets.split.map(&:to_i)
-
+h, w, d = gets.split.map(&:to_i)
+s = Array.new(h) { gets.chomp.chars }
+# 床の座標をピックアップする
+# product => 二重配列を作る
+floors = (0...h).to_a.product((0...w).to_a).select { |(i, j)| s[i][j] == '.' }
+ans = 0
+# 加湿器を二箇所に置く => 二箇所の床の組み合わせの順列を作る => permutation(2)
+floors.permutation(2) do |(i1, j1), (i2, j2)| # ブロック変数を要素ごとに括弧で囲まないとエラーになる
+  ans = [ans,
+         # 床を全探索する 条件はd以下のマンハッタン距離
+         # どちらかの加湿器の範囲内にある床の数をcountする
+         floors.count { |i, j| ((i - i1).abs + (j - j1).abs <= d) || ((i - i2).abs + (j - j2).abs <= d) }].max
+end
+puts ans
