@@ -1,10 +1,31 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# n = gets.to_s.to_i  # 整数1つを受け取る(1行に1つ整数がある前提)#
-# s = gets.to_s.chomp # 1行を文字列として受け取る(chompで最後の改行を切り落としている)
-# a = gets.to_s.split.map{ |e| e.to_i } # 横1行のスペース区切りの整数を配列として受け取る
-# a = Array.new(n){ gets.to_s.to_i } # n行1列の改行区切りの整数を配列として受け取る
-# m = Array.new(n){ gets.to_s.split.map{ |e| e.to_i } } # n行m列の整数を2次元配列で受け取る
-a, b = gets.split.map(&:to_i)
+def num_move(n, from, to, ng)
+  # スワップする => 距離の計算なので入れ替わっても問題ない
+  # 時計回りに移動方向を統一できる
+  from, to = to, from if from > to
+  if from < ng && ng < to
+    # 現在地と目的地の間に反対の手があれば逆回り
+    n + from - to
+  else
+    to - from
+  end
+end
 
+n, q = gets.split.map(&:to_i)
+l = 1
+r = 2
+res = 0
+q.times do
+  h, t = gets.split.map(&:chomp)
+  t = t.to_i
+  if h == 'R'
+    res += num_move(n, r, t, l)
+    r = t
+  elsif h == 'L'
+    res += num_move(n, l, t, r)
+    l = t
+  end
+end
+puts res
