@@ -9,6 +9,7 @@ while s != t
   # eachの前に初期化
   best = ''
   # このeach文一周で1つの文字が書き換えられる
+  # 書き換える箇所をすべて試して辞書順で最小の文字列に更新
   (0...n).each do |i|
     next unless s[i] != t[i]
 
