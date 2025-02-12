@@ -4,13 +4,15 @@
 n = gets.to_i
 a = gets.split.map(&:to_i)
 
-res = a.size
-(0...n - 1).each do |i|
-  diff = a[i + 1] - a[i]
-  (i + 1...n).each do |j|
-    break unless diff == a[j] - a[j - 1]
+ans = 0
+r = 0
+# 尺取法
+n.times do |l|
+  while r < n
+    break if (r > l + 1) && (a[r] - a[r - 1] != a[r - 1] - a[r - 2])
 
-    res += 1
+    r += 1
   end
+  ans += r - l
 end
-puts res
+puts ans
