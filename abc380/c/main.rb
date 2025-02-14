@@ -1,10 +1,21 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# n = gets.to_s.to_i  # 整数1つを受け取る(1行に1つ整数がある前提)#
-# s = gets.to_s.chomp # 1行を文字列として受け取る(chompで最後の改行を切り落としている)
-# a = gets.to_s.split.map{ |e| e.to_i } # 横1行のスペース区切りの整数を配列として受け取る
-# a = Array.new(n){ gets.to_s.to_i } # n行1列の改行区切りの整数を配列として受け取る
-# m = Array.new(n){ gets.to_s.split.map{ |e| e.to_i } } # n行m列の整数を2次元配列で受け取る
-a, b = gets.split.map(&:to_i)
-
+n, k = gets.split.map(&:to_i)
+s = gets.chomp.chars
+res = []
+from = nil
+(0...n).each do |i|
+  if s[i].to_i == 1 && from.nil?
+    from = i
+    res << { from:, to: i, dist: 0 }
+  elsif s[i].to_i == 1
+    res.last[:to] = i
+    res.last[:dist] += 1
+  else
+    from = nil
+  end
+end
+(res[k - 1][:from]..res[k - 1][:to]).each { |i| s[i] = '0' }
+(res[k - 2][:to] + 1..res[k - 2][:to] + 1 + res[k - 1][:dist]).each { |i| s[i] = '1' }
+puts s.join
