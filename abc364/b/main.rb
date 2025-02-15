@@ -1,10 +1,24 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# n = gets.to_s.to_i  # 整数1つを受け取る(1行に1つ整数がある前提)#
-# s = gets.to_s.chomp # 1行を文字列として受け取る(chompで最後の改行を切り落としている)
-# a = gets.to_s.split.map{ |e| e.to_i } # 横1行のスペース区切りの整数を配列として受け取る
-# a = Array.new(n){ gets.to_s.to_i } # n行1列の改行区切りの整数を配列として受け取る
-# m = Array.new(n){ gets.to_s.split.map{ |e| e.to_i } } # n行m列の整数を2次元配列で受け取る
-a, b = gets.split.map(&:to_i)
-
+h, w = gets.split.map(&:to_i)
+i, j = gets.split.map(&:to_i)
+c = Array.new(h) { gets.chomp.chars }
+X = gets.chomp.chars
+i -= 1
+j -= 1
+X.each do |x|
+  case x
+  when 'L'
+    j -= 1 if j - 1 >= 0 && c[i][j - 1] == '.'
+  when 'R'
+    j += 1 if j + 1 < w && c[i][j + 1] == '.'
+  when 'U'
+    i -= 1 if i - 1 >= 0 && c[i - 1][j] == '.'
+  when 'D'
+    i += 1 if i + 1 < h && c[i + 1][j] == '.'
+  end
+end
+i += 1
+j += 1
+puts "#{i} #{j}"
