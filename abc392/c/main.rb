@@ -4,12 +4,6 @@
 n = gets.to_i
 p = gets.split.map(&:to_i)
 q = gets.split.map(&:to_i)
-hash = {}
-res = []
-n.times do |i|
-  hash[q[i]] = p[i]
-end
-hash.sort.each do |_k, v|
-  res << q[v - 1]
-end
-puts res.join(' ')
+h = []
+(0...n).to_a.each { |i| h << [[q[i] - 1], q[p[i] - 1]] }
+puts h.sort.map(&:last).join(' ')
