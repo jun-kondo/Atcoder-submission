@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+s1, s2 = gets.split
+
+if s1 == 'sick' && s2 == 'sick'
+  puts '1'
+elsif s1 == 'sick'
+  puts '2'
+elsif s2 == 'sick'
+  puts '3'
+else
+  puts '4'
+end
