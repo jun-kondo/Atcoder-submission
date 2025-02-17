@@ -10,13 +10,13 @@ end
 ans = 0
 center = h.size / 2
 ofs = 1
-h.each do |p|
-  if p == h[center]
+(0...h.size).each do |i|
+  if h[i] == h[center]
     ofs = 1
     next
   end
 
-  ans += (p - h[center]).abs - ofs
+  ans += (h[i] - h[center]).abs - ofs
   ofs += 1
 end
 puts ans
