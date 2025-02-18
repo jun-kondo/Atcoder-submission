@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+a, b = gets.split.map(&:to_i)
+x = [1, 2, 3]
+x.delete(a)
+x.delete(b)
+x.size == 1 ? puts(x.first) : puts(-1)
