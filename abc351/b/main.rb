@@ -1,8 +1,15 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+n = gets.to_i
+a = Array.new(n) { gets.chomp.chars }
+b = Array.new(n) { gets.chomp.chars }
+
+(0...n).each do |i|
+  (0...n).each do |j|
+    if a[i][j] != b[i][j]
+      puts "#{i + 1} #{j + 1}"
+      exit
+    end
+  end
+end
