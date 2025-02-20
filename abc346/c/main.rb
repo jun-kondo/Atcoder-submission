@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+n, k = gets.split.map(&:to_i)
+a = gets.split.map(&:to_i).uniq
+ans = k * (k + 1) / 2
+a.each { |ai| ans -= ai if ai <= k }
+puts ans
