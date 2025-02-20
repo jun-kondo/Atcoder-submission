@@ -14,4 +14,4 @@ res = []
   end
 end
 puts k
-res.each { |r| puts r.join(' ') }
+puts(res.map { |r| r.join(' ') })
