@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+n = gets.to_i
+list = {}
+list.default = 10**9 + 1
+(0...n).each do
+  a, c = gets.split.map(&:to_i)
+  list[c] = [list[c], a].min
+end
+puts list.values.max

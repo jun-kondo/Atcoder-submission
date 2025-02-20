@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+n = gets.to_i
+
+res = []
+(1..n).each do |i|
+  res << if i % 3 == 0
+           'x'
+         else
+           'o'
+         end
+end
+puts res.join
