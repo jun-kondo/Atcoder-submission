@@ -1,8 +1,19 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+s = gets.chomp
+r = 0
+res = []
+while r < s.length
+  if (s[r] == ')' && res.last == '(') || (s[r] == ']' && res.last == '[') || (s[r] == '>' && res.last == '<')
+    res.pop
+  else
+    res.push(s[r])
+  end
+  r += 1
+end
+if res.size == 0
+  puts 'Yes'
+else
+  puts 'No'
+end

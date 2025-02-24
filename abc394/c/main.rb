@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+s = gets.chomp.chars
+(s.length - 1).downto(1) do |i|
+  if s[i - 1] + s[i] == 'WA'
+    s[i - 1] = 'A'
+    s[i] = 'C'
+  end
+end
+puts s.join
