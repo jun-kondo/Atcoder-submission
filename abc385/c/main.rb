@@ -1,10 +1,29 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# n = gets.to_s.to_i  # 整数1つを受け取る(1行に1つ整数がある前提)#
-# s = gets.to_s.chomp # 1行を文字列として受け取る(chompで最後の改行を切り落としている)
-# a = gets.to_s.split.map{ |e| e.to_i } # 横1行のスペース区切りの整数を配列として受け取る
-# a = Array.new(n){ gets.to_s.to_i } # n行1列の改行区切りの整数を配列として受け取る
-# m = Array.new(n){ gets.to_s.split.map{ |e| e.to_i } } # n行m列の整数を2次元配列で受け取る
-a, b = gets.split.map(&:to_i)
+# https://atcoder.jp/contests/abc385/tasks/abc385_c
+n = gets.to_s.to_i
+h = gets.split.map(&:to_i)
 
+ans = 0
+# 長さが1の配列だとバグるので終端はnも含むようにセット
+(1..n).each do |interval| # 数列を調べる間隔を1~nで探索
+  (0...interval).each do |start| # 数列を調べる視点0~w(interval)-1
+    arr = []
+    # step(上限値, 間隔)
+    start.step(n - 1, interval) { |i| arr << h[i] }
+
+    val = -1, len = 0
+    arr.each do |x|
+      # 同じ要素が連続しているかどうか調べる。falseなら1にリセット
+      if val == x
+        len += 1
+      else
+        val = x
+        len = 1
+      end
+      ans = [ans, len].max
+    end
+  end
+end
+puts ans
