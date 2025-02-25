@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+# https://atcoder.jp/contests/abc340/tasks/abc340_c
+def f(n, memo = {})
+  return memo[n] if memo.key?(n)
+
+  result = if n == 1
+             0
+           else
+             f(n / 2, memo) + f((n + 1) / 2, memo) + n
+           end
+  memo[n] = result
+  result
+end
+
+n = gets.to_i
+puts f(n)
