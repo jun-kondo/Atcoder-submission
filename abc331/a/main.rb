@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+M, D = gets.split.map(&:to_i)
+y, m, d = gets.split.map(&:to_i)
+
+if m == M && d == D
+  y += 1
+  m = 1
+  d = 1
+elsif d == D
+  m += 1
+  d = 1
+else
+  d += 1
+end
+
+puts "#{y} #{m} #{d}"
