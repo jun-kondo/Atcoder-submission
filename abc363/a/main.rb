@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+r = gets.to_i
+ans = 10**9
+[399, 299, 199, 99].each do |x|
+  x -= r
+  ans = [ans, x + 1].min if x >= 0
+end
+puts ans
