@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# a = Array.new(n){ gets.to_i }
-# m = Array.new(n){ gets.split.map(&:to_i) }
-# n = gets.to_i
-# s = gets.chomp
-a = gets.split.map(&:to_i)
+n = gets.to_i
+(n..919).each do |i|
+  nums = i.digits
+  p = nums[-2] * nums[-1]
+  if p == nums[0] && i >= n
+    puts i
+    exit
+  end
+end
